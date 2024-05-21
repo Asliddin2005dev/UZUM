@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   background-color: rgb(240, 240, 255);
-  color: #7000FF;
+  color: #7000ff;
   gap: 6px;
   margin-right: 8px;
   font-weight: 500;
@@ -83,6 +83,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-collection-item:hover {
+  border-bottom: 2px solid;
 }
 
 .navbar-collection-item svg {
@@ -118,7 +124,7 @@
   }
 
   .navbar-bottom::-webkit-scrollbar-thumb {
-    background-color: #7000FF;
+    background-color: #7000ff;
     border-radius: 20px;
   }
 
@@ -127,7 +133,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #7000FF;
+    background-color: #7000ff;
     border-radius: 20px;
   }
 
@@ -171,7 +177,6 @@
   }
 }
 
-
 @media only screen and (max-width: 665px) {
   .navbar-menu-btn {
     margin-right: 0;
@@ -190,5 +195,4 @@
   .navbar-logo-img {
     margin-right: 5px;
   }
-
 }

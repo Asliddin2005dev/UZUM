@@ -121,8 +121,8 @@
   margin-top: 10px;
   background: var(--bg-py);
   border: none;
-  color: white;
-  background-color: #2813ea;
+  background-color: dodgerblue;
+  color: #fff;
   font-size: 16px;
   border-radius: 10px;
   cursor: pointer;

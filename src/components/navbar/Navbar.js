@@ -12,7 +12,7 @@ function Navbar() {
         <div className="navbar">
 
           <div className='navbar-logo-collection-wrapper'>
-            <Link className='navbar-logo-link' href="">
+            <Link to={'/'} className='navbar-logo-link' href="">
               <img className='navbar-logo-img' src={navbarLogo} alt="" />
             </Link>
 

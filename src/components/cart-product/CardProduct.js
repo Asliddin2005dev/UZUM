@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaRegTrashAlt } from "react-icons/fa";
-import CartForm from './CartForm';
+import CardForm from "./CardForm";
 
 function CartProduct({ data }) {
   let dispatch = useDispatch();
@@ -53,7 +53,7 @@ function CartProduct({ data }) {
           ))}
         </div>
         <div className="cart__register">
-          <CartForm data={data}/>
+          <CardForm data={data} />
         </div>
       </div>
     </div>
