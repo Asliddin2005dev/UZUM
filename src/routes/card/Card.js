@@ -8,18 +8,20 @@ function Card() {
   const carts = useSelector((state) => state.carts.value);
 
   return (
-    <div>
-      {carts.length ? (
-        <CartProduct data={carts} />
-      ) : (
-        <Empty
-          img={shopCard}
-          title="Savatda hozircha mahsulot yoʻq"
-          description="Bosh sahifadagi to’plamlardan boshlang yoki kerakli mahsulotni qidiruv orqali toping"
-          link="/"
-        />
-      )}
-    </div>
+    <>
+      <div>
+        {carts.length ? (
+          <CartProduct data={carts} />
+        ) : (
+          <Empty
+            img={shopCard}
+            title="Savatda hozircha mahsulot yoʻq"
+            description="Bosh sahifadagi to’plamlardan boshlang yoki kerakli mahsulotni qidiruv orqali toping"
+            link="/"
+          />
+        )}
+      </div>
+    </>
   );
 }
 

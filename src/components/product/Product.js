@@ -2,10 +2,11 @@ import React from "react";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import "./Product.css";
 import { CiHeart } from "react-icons/ci";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishies, removeFromWishies } from "../../redux/wishiesSlice";
 import { incCart } from "../../redux/cartSlice";
+import { Link } from "react-router-dom";
 
 function Product({ data }) {
   const dispatch = useDispatch();
@@ -17,52 +18,61 @@ function Product({ data }) {
         <h2 className="product-heading">Tavsiyalar</h2>
 
         <div className="product-wrapper">
-          {data.map((el, index) => {
-            return (
-              <div className="product-card">
-                <div className="product-card-img-wrapper">
-                  <a className="product-card-img-link" href="">
-                    <img className="product-card-img" src={el.url[0]} alt="" />
-                  </a>
-
-                  {wishes?.some((item) => item.id === el.id) ? (
-                    <div
-                      onClick={() => dispatch(removeFromWishies(el))}
-                      className="product-card-heart"
+          <>
+            {data.map((el, index) => {
+              return (
+                <div key={index} className="product-card">
+                  <div className="product-card-img-wrapper">
+                    <Link
+                      to={`product/${el.id}`}
+                      className="product-card-img-link"
                     >
-                      <FaHeart />
-                    </div>
-                  ) : (
-                    <div
-                      onClick={() => dispatch(addToWishies(el))}
-                      className="product-card-heart"
-                    >
-                      <CiHeart />
-                    </div>
-                  )}
-                </div>
+                      <img
+                        className="product-card-img"
+                        src={el.url[0]}
+                        alt=""
+                      />
+                    </Link>
 
-                <div className="product-card-body">
-                  <h2 className="product-card-title">{el.title}</h2>
-                  <mark>{(el.price * 1.5) / 12} So'm / Oyiga </mark>
+                    {wishes?.some((item) => item.id === el.id) ? (
+                      <div
+                        onClick={() => dispatch(removeFromWishies(el))}
+                        className="product-card-heart"
+                      >
+                        <FaHeart />
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() => dispatch(addToWishies(el))}
+                        className="product-card-heart"
+                      >
+                        <CiHeart />
+                      </div>
+                    )}
+                  </div>
 
-                  <div className="product-card-price-wrapper">
-                    <div className="product-card-price-item">
-                      <del>{el.price * 1.5}</del>
-                      <p>{el.price}</p>
-                    </div>
+                  <div className="product-card-body">
+                    <h2 className="product-card-title">{el.title}</h2>
+                    <mark>{(el.price * 1.5) / 12} So'm / Oyiga </mark>
 
-                    <div
-                      onClick={() => dispatch(incCart(el))}
-                      className="product-card-price-icon"
-                    >
-                      <TbShoppingBagPlus />
+                    <div className="product-card-price-wrapper">
+                      <div className="product-card-price-item">
+                        <del>{el.price * 1.5}</del>
+                        <p>{el.price}</p>
+                      </div>
+
+                      <div
+                        onClick={() => dispatch(incCart(el))}
+                        className="product-card-price-icon"
+                      >
+                        <TbShoppingBagPlus />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </>
         </div>
       </div>
     </div>

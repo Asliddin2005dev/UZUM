@@ -52,6 +52,7 @@ function CartProduct({ data }) {
             </div>
           ))}
         </div>
+
         <div className="cart__register">
           <CardForm data={data} />
         </div>

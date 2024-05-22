@@ -6,6 +6,8 @@ import Wishies from "./routes/wishies/Wishies";
 import NavbarMain from "./components/navbar/NavbarMain";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Krish from "./routes/login/Krish";
+import SingleRoute from "./routes/SingleRoute/SingleRoute";
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="card" element={<Card />} />
+        <Route path="Savat" element={<Card />} />
+        <Route path="Krish" element={<Krish />} />
         <Route path="like" element={<Wishies />} />
+        <Route path="product/:id" element={<SingleRoute />} />
       </Routes>
     </div>
   );

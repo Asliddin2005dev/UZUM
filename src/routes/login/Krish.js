@@ -1,11 +1,8 @@
 import React from 'react'
-import './Login.css'
 import { Link } from 'react-router-dom'
+import './Krish.css'
 
-function Login  () {
-
-
-
+function Krish() {
     return (
         <div className='Krish' >
             <div className="box">
@@ -26,4 +23,4 @@ function Login  () {
     )
 }
 
-export default Login
+export default Krish

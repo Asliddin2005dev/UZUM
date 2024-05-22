@@ -1,6 +1,5 @@
-import React from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
+import "./CardProduct.css";
 
 const BOT_TOKEN = "7107932985:AAEiONVblhSxivdRNSRbmBTjyaQkikEiLBQ"
 //https://api.telegram.org/bot7107932985:AAEiONVblhSxivdRNSRbmBTjyaQkikEiLBQ/getUpdates
@@ -8,27 +7,25 @@ const BOT_TOKEN = "7107932985:AAEiONVblhSxivdRNSRbmBTjyaQkikEiLBQ"
 
 const CHAT_ID = "-4239460466"
 const USER_ID = " 7107932985"
-
-
 function CardForm({ data }) {
-  const [fullName, setfullName] = useState("");
+  const [fullName, setFullName] = useState();
   const tel = useRef();
   const address = useRef();
-  const message = useRef();
+  const messages = useRef();
 
-  const handleSubmit = (e) => {
+  const heandleSubmit = (e) => {
     e.preventDefault();
 
     let text = "Buyurtma";
     text += ` Name: ${fullName} %0A`;
-    text += ` Tel: ${tel.current.value} %0A`;
-    text += ` Address: ${address.current.value} %0A`;
-    text += ` Message: ${message.current.value} %0A %0A`;
+    text += ` TeL: ${tel.current.value} %0A`;
+    text += ` Address ${address.current.value} %0A`;
+    text += ` Comment ${messages.current.value} %0A %0A`;
 
     data.forEach((item) => {
-      text += `Mahsulot nomi: ${item.title} %0A`;
-      text += `Mahsulot narxi: ${item.price} %0A`;
-      text += `Mahsulot soni: ${item.quantity} %0A %0A`;
+      text += `Maxsulot Nomi: ${item.title} %0A `;
+      text += `Maxsulot Narxi: ${item.price} %0A `;
+      text += `Maxsulot Soni: ${item.quantity} %0A %0A`;
     });
 
     let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}&parse_mode=html`;
@@ -36,26 +33,41 @@ function CardForm({ data }) {
     let api = new XMLHttpRequest();
     api.open("GET", url, true);
     api.send();
+
+    setFullName("");
+    tel.current.value = "";
+    address.current.value = "";
+    messages.current.value = "";
   };
 
   return (
     <div className="input__reg">
-      <h3>Ma'lumotlaringizni kirirting</h3>
-      <form onSubmit={handleSubmit} action="">
+      <h3>Malumotlaringizni kriting</h3>
+      <form onSubmit={heandleSubmit}>
         <input
           required
-          onChange={(e) => setfullName(e.target.value)}
+          onChange={(e) => setFullName(e.target.value)}
           type="text"
-          placeholder="Toliq ismingizni kiriting"
+          placeholder="To'liqismingizni kriting"
         />
-        <input required ref={tel} type="text" placeholder="+998 00 000 00 00" />
+        <input
+          required
+          ref={tel}
+          type="number"
+          placeholder="+998 00 000 00 00"
+        />
         <input required ref={address} type="text" placeholder="Manzilingiz" />
-        <input required ref={message} type="text" placeholder="Habar yollash" />
+        <input
+          required
+          ref={messages}
+          type="text"
+          placeholder="Habar Yollash"
+        />
 
         <div className="total">
-          <p>Umumiy narx</p>
+          <p>umumiy narx</p>
           <p>
-            Jami: {""}
+            Jami : {""}
             {data.reduce(
               (sum, item, index) => sum + item.price * item.quantity,
               0
@@ -63,10 +75,17 @@ function CardForm({ data }) {
           </p>
         </div>
 
-        <button className="btn-reg">Rasmiylashtirishga o'tish</button>
+        <button className="btn-reg">Rasmilashtirishga o'tish</button>
       </form>
     </div>
   );
 }
 
 export default CardForm;
+
+// let users = {
+//   fullName: fullName,
+//   tel: tel.current.value,
+//   address: address.current.value,
+//   messages: messages.current.value,
+// };
